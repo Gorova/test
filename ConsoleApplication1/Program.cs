@@ -13,18 +13,12 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var std = new List<Student>();
-            std.Add(new Student()
-            {
-                Name = "nata", SurName = "lavrenchuk", Age = 21
-            }
-            );
-            
             IKernel kernel = new StandardKernel(new LibraryModule());
             var std1 = kernel.Get<Student>();
             var context = kernel.Get<DbContext>();
-            IRepository repo = new Repository(context);
-            repo.Add(new Student { Name = "nata", SurName = "lavrenchuk", Age = 21 });
-          }
+            var repo = kernel.Get<IRepository>();
+          //  IRepository repo = new Repository(context);
+
+        }
     }
 }
